@@ -9,8 +9,8 @@
         }
 
         #graph {
-            width: 100%;
-            height: 100%;
+            width: 2750px;
+            height: 2500px;
             position: absolute;
             left: 0;
             top: 0;
@@ -21,36 +21,41 @@
 
 <body>
     <div id="graph"></div>
+
+    <script> {{ .Lib }}</script>
+
+    <script> {{ .Layout }}</script>
+
     <script>
-        {{ .Lib }}
-        {{ .Layout }}
         document.addEventListener('DOMContentLoaded', function () {
             window.graph = cytoscape({
                 container: document.getElementById('graph'),
-                elements: {{.Elements }},
-            style: [
-            {
-                selector: 'node',
-                style: {
-                    'content': 'data(id)',
-                    "shape": "data(type)",
-                    'background-color': '#f92411',
-                },
-            },
-            {
-                selector: 'edge',
-                style: {
-                    'curve-style': 'bezier',
-                    'target-arrow-shape': 'triangle',
-                    'target-arrow-color': '#f92411',
-                    'line-color': '#f92411',
-                }
-            }
-        ],
 
-            layout: {
-            name: 'klay',
-        }
+                elements: {{ .Elements }},
+
+                style: [
+                    {
+                        selector: 'node',
+                        style: {
+                            'content': 'data(id)',
+                            "shape": "data(type)",
+                            'background-color': '#f92411',
+                        },
+                    },
+                    {
+                        selector: 'edge',
+                        style: {
+                            'curve-style': 'bezier',
+                            'target-arrow-shape': 'triangle',
+                            'target-arrow-color': '#f92411',
+                            'line-color': '#f92411',
+                        }
+                    }
+                ],
+
+                layout: {
+                    name: 'klay',
+                }
 
             });
         });

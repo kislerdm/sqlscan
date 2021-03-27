@@ -56,30 +56,31 @@ var (
 
 type Template struct {
 	Elements elements
-	Lib      string
-	Layout   string
+	Lib      template.JS
+	Layout   template.JS
 }
 
-func ToHTML(g graph.Graph) (string, error) {
+func ToHTML(g graph.Graph) ([]byte, error) {
 	elements, err := fromGraph(g)
 	if err != nil {
-		return "", err
+		return []byte{}, err
 	}
 
 	t := Template{
 		Elements: elements,
-		Lib:      lib,
-		Layout:   layout,
+		Lib:      template.JS(lib),
+		Layout:   template.JS(layout),
 	}
 
 	p, err := template.New("template").Parse(htmlTemplate)
 	if err != nil {
-		return "", err
+		return []byte{}, err
 	}
 
 	var templateRender bytes.Buffer
 	if err := p.Execute(&templateRender, t); err != nil {
-		return "", err
+		return []byte{}, err
 	}
-	return templateRender.String(), nil
+
+	return templateRender.Bytes(), nil
 }
