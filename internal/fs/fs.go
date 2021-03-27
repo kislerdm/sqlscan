@@ -22,7 +22,7 @@ func WriteText(content string, path string) error {
 
 // WriteFile writes object to the local file system.
 func WriteFile(content []byte, path string) error {
-	if err := mkdirs(p.Dir(path)); !os.IsExist(err) {
+	if err := mkdirs(p.Dir(path)); err != nil {
 		return err
 	}
 	return ioutil.WriteFile(path, content, 0644)
