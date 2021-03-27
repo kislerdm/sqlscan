@@ -19,12 +19,12 @@ func main() {
 			{ID: "1", Source: "schema1.table1", Target: "schema2.table2"},
 		},
 	}
-	_, err := viz.ToHTML(g)
+	out, err := viz.ToHTML(g)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	err = fs.WriteFile([]byte{}, "/tmp/index.html")
+	err = fs.WriteFile(out, "/tmp/index.html")
 	if err != nil {
 		log.Fatalln(err)
 	}
