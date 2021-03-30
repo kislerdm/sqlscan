@@ -11,5 +11,7 @@ The program consumes the *.sql file(s), parses it and outputs the tables depende
 
 ## Dependencies
 
-- https://github.com/SebastiaanKlippert/go-wkhtmltopdf
-- https://github.com/pganalyze/pg_query_go
+- [wkhtmltopdf](https://wkhtmltopdf.org/libwkhtmltox/) to perform HTML2PDF conversion
+- [pg_query_go](https://github.com/pganalyze/pg_query_go) to parse PSQL queries
+- [cytoscape](https://js.cytoscape.org/) to vizualize graphs
+- [Klay algorithm](https://github.com/kieler/klayjs) to form the nodes layer on the graph
